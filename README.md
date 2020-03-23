@@ -10,7 +10,7 @@ nmap -A -T4
 ### Usage:
 
 ```
-sudo python betterscan.py <IP_Address
+sudo python betterscan.py <IP_Address>
 
 e.g.
 
