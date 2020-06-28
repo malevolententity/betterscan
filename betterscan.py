@@ -7,6 +7,10 @@ import subprocess
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--port-file", help="file containing ports scanned by massmap. If specified, skips massscan and goes directly to nmap")
 parser.add_argument("-o", "--options", help="specifies options that nmap should run. e.g. -A -T4. DO NOT SPECIFY PORTS")
+
+
+
+parser.add_argument("-e", "--interface", help="interface to perform the scan on e.g. wlan0", required=True)
 parser.add_argument("ip", help="IP address to perform nmap on.")
 args = parser.parse_args()
 
@@ -29,7 +33,7 @@ if args.port_file is None:
 # # MASSCAN PART #
 # ################
 	with open("masscan.txt", "w+") as f:
-		cmd = "sudo masscan -p1-65535,U:1-65535 --rate=1000 --wait 0 -e tun0 " + args.ip
+		cmd = "sudo masscan -p1-65535,U:1-65535 --rate=1000 --wait 0 -e" + args.interface + " " + args.ip
 		subprocess.call(cmd, stdout=f, shell=True)
 
 
