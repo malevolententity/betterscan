@@ -16,14 +16,14 @@ args = parser.parse_args()
 
 
 
-print "Checking if " + args.ip + " is up...."
+print("Checking if " + args.ip + " is up....")
 #To check if host is up else exit
 HOST_UP  = True if os.system("ping -c 2 " + args.ip.strip(";") + ">/dev/null 2>&1") is 0 else False
 
 if HOST_UP:
-	print args.ip + " is reachable. Starting betterscan"
+	print(args.ip + " is reachable. Starting betterscan")
 else:
-	print "ERROR: IP unreachable. Exiting"
+	print("ERROR: IP unreachable. Exiting")
 	exit()
 
 
@@ -37,7 +37,7 @@ if args.port_file is None:
 		subprocess.call(cmd, stdout=f, shell=True)
 
 
-print "[+] Directory: " + os.getcwd() + "/masscan.txt"
+print("[+] Directory: " + os.getcwd() + "/masscan.txt")
 
 #############
 # NMAP PART #
@@ -55,7 +55,7 @@ ports.sort()
 
 
 if len(ports) <= 0:
-	print "ERROR: Empty port list. Exiting."
+	print("ERROR: Empty port list. Exiting.")
 	exit()
 
 if args.options is None:
